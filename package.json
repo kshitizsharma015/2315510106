@@ -1,0 +1,13 @@
+{
+  "name": "campus-notifications-workspace",
+  "private": true,
+  "workspaces": [
+    "notification_app_fe",
+    "logging_middleware"
+  ],
+  "scripts": {
+    "dev": "npm --workspace notification_app_fe run dev",
+    "build": "npm --workspace notification_app_fe run build",
+    "lint": "npm --workspace notification_app_fe run lint"
+  }
+}
