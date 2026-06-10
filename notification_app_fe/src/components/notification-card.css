@@ -1,0 +1,99 @@
+.notification-card {
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.notification-card.unread {
+  border-left: 4px solid #1d4ed8;
+}
+
+.notification-card.read {
+  opacity: 0.72;
+}
+
+.nc-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.nc-type {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.nc-time {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.nc-message {
+  margin: 0 0 0.65rem;
+  color: #0f172a;
+}
+
+.nc-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nc-btn {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nc-btn:hover {
+  background: rgba(29, 78, 216, 0.04);
+}
+
+.notifications-shell {
+  max-width: 900px;
+  margin: 1.25rem auto;
+  padding: 1rem;
+}
+
+.notifications-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.token-input {
+  flex: 1 1 420px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.token-input input {
+  flex: 1 1 auto;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.page-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .notifications-shell {
+    padding: 0.5rem;
+  }
+}
