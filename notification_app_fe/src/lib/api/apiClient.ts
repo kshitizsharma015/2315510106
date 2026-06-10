@@ -21,7 +21,7 @@ export async function clientFetch<T>(url: string, opts: ClientOptions = {}): Pro
       const token = await getToken();
       headers.set('Authorization', `Bearer ${token}`);
     } catch (err) {
-      appLogger.warn('apiClient: unable to attach token from TokenManager', { hasCredentials: !!getCredentials() });
+      appLogger.warn('apiClient: unable to attach token from TokenManager', { hasCredentials: !!getCredentials(), reason: (err as Error).message ?? String(err) });
     }
   }
 

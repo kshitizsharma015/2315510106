@@ -37,7 +37,7 @@ async function fetchAndCache(): Promise<string> {
         expiresAt = payload.exp * 1000;
       }
     }
-  } catch (e) {
+  } catch {
     // ignore
   }
 
