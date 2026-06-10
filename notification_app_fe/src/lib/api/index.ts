@@ -9,3 +9,6 @@ export type {
   NotificationType,
   NotificationsResponse,
 } from './types';
+
+export { setCredentials as setAuthCredentials, getToken as getAuthToken } from '@/lib/auth/tokenManager';
+export { clientGet, clientPost } from './apiClient';

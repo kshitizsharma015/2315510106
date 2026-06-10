@@ -1,5 +1,6 @@
 import { NOTIFICATIONS_ENDPOINT } from './constants';
 import { apiFetch } from './http';
+import { clientGet } from './apiClient';
 import type {
   NotificationItem,
   NotificationQueryParams,
@@ -30,13 +31,21 @@ export async function fetchNotifications(
   bearerToken: string,
   params: NotificationQueryParams = {},
 ): Promise<NotificationItem[]> {
-  const response = await apiFetch<NotificationsResponse>(`${NOTIFICATIONS_ENDPOINT}${buildQueryString(params)}`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${bearerToken}`,
-    },
-    responseLabel: 'Notifications',
-  });
+  const url = `${NOTIFICATIONS_ENDPOINT}${buildQueryString(params)}`;
 
+  if (bearerToken) {
+    const response = await apiFetch<NotificationsResponse>(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+      responseLabel: 'Notifications',
+    });
+
+    return response.notifications ?? [];
+  }
+
+  // when no bearer token provided, attempt to use the apiClient which can use TokenManager
+  const response = await clientGet<NotificationsResponse>(url, { responseLabel: 'Notifications', useAuthFromManager: true });
   return response.notifications ?? [];
 }

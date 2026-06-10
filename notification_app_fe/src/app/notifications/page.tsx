@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { fetchNotifications, fetchAuthToken } from '@/lib/api';
+import { fetchNotifications, fetchAuthToken, setAuthCredentials } from '@/lib/api';
 import type { AuthCredentials } from '@/lib/api/types';
 import { appLogger } from '@/lib/logger';
 import type { NotificationItem } from '@/lib/api/types';
@@ -44,7 +44,9 @@ export default function NotificationsPage() {
       setError(null);
       const resp = await fetchAuthToken(creds);
       setToken(resp.token);
-      appLogger.info('Fetched token from server');
+      // also set credentials into TokenManager so other pages can use it
+      setAuthCredentials(creds);
+      appLogger.info('Fetched token from server and set credentials');
     } catch (err) {
       appLogger.error('Failed to fetch token from server', err as Error);
       setError((err as Error).message ?? 'Failed to fetch token');
